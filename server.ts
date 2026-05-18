@@ -90,6 +90,38 @@ app.all('*', async (req: Request, res: Response, next) => {
   next();
 });
 
+// Root route handler for the web player iframe
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Web Player</title>
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background-color: #000;
+            }
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+        <iframe src="https://sjstore-replayer.hf.space/" allowfullscreen allow="autoplay; encrypted-media; fullscreen;"></iframe>
+    </body>
+    </html>
+  `);
+});
+
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import('vite');
