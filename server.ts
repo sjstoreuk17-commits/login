@@ -2,7 +2,6 @@ import express, { Request, Response } from 'express';
 import path from 'path';
 import cors from 'cors';
 import axios from 'axios';
-import { createServer as createViteServer } from 'vite';
 
 const app = express();
 const PORT = 3000;
@@ -93,6 +92,7 @@ app.all('*', async (req: Request, res: Response, next) => {
 
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -112,4 +112,8 @@ async function startServer() {
   });
 }
 
-startServer();
+if (process.env.NODE_ENV !== "production") {
+  startServer();
+}
+
+export default app;
