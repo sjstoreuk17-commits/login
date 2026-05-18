@@ -1,0 +1,8 @@
+{
+  "name": "IPTV API Proxy & Relay",
+  "description": "A serverless reverse proxy for IPTV APIs that relays text data and redirects media streams to save bandwidth.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
